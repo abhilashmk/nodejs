@@ -6,18 +6,10 @@ app.get('/', function (req, res) {
  // res.send('Hello abhilash branch World!');
  
  
-const mongodb = require('mongodb');
 
-var MongoClient = require('mongodb').MongoClient;
-var uri = "YOUR_URL";
-MongoClient.connect(uri, function (err, db) {
-db.close();
-if (err) {
-res.send(err);
-} else {
-res.send("Connected success");
-}
-});
+res.send("Hello world Linux Abhilash");
+
+
 
  
 });
