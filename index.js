@@ -7,7 +7,7 @@ app.get('/', function (req, res) {
  
  
 
-res.send("Hello world Linux Abhilash, Anand");
+res.send("Hello world Linux Abhilash");
 
 
 
