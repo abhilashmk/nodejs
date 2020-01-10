@@ -1,5 +1,4 @@
 var express = require('express');
-var lamemodule = require('notamodule');
 var port = 0;
 var app = express();
 app.get('/', function (req, res) {
