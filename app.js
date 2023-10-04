@@ -11,14 +11,12 @@ const logger = winston.createLogger(logConfiguration);
 app.get('/', function (req, res) {
  // res.send('Hello abhilash branch World!');
 //sleep.sleep(5)
+logger.info('Hello, Winston!');
 res.send("Hello world Linux Abhilash feature test");
-
- 
 });
 
 port = process.env.PORT || 1337;
 var server = app.listen(port,function(){
 	
 });
-logger.info('Hello, Winston!');
 console.log("Server running at http://localhost:%d", port);
