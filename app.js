@@ -8,22 +8,25 @@ const logConfiguration = {
     ]
 };
 
-const { monitorEventLoopDelay } = require('perf_hooks');
-const h = monitorEventLoopDelay({ resolution: 20 });
+const { performance } = require('perf_hooks');
+const monitor = performance.monitorEventLoopDelay();
+
+monitor.enable();
 
 const logger = winston.createLogger(logConfiguration);
 app.get('/', function (req, res) {
- // res.send('Hello abhilash branch World!');
-h.enable();
-sleep.sleep(5)
-logger.info('Hello, Winston!');
-h.disable();
-logger.info(h.max);
-res.send("Hello world Linux Abhilash feature test");
+    const start = Date.now();
+    while (Date.now() - start < 4000) {
+        Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 4000);
+    }
+    res.send('Hello World!');
 });
 
 port = process.env.PORT || 1337;
 var server = app.listen(port,function(){
 	
 });
-console.log("Server running at http://localhost:%d", port);
+setInterval(() => {
+    console.log(`The mean event loop delay over the last 5 seconds was ${monitor.mean}ms`);
+    monitor.reset();
+}, 5000);
