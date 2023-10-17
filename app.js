@@ -8,10 +8,6 @@ const logConfiguration = {
     ]
 };
 
-
-obs.observe({ entryTypes: ['eventLoopDelay'], buffered: true });
-
-
 const { monitorEventLoopDelay } = require('perf_hooks');
 const h = monitorEventLoopDelay({ resolution: 20 });
 
