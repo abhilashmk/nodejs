@@ -8,6 +8,7 @@ const logConfiguration = {
     ]
 };
 
+/*
 const { performance, PerformanceObserver, perf_hooks } = require('perf_hooks');
 
 const obs = new PerformanceObserver((items) => {
@@ -16,13 +17,20 @@ const obs = new PerformanceObserver((items) => {
 });
 
 obs.observe({ entryTypes: ['eventLoopDelay'], buffered: true });
+*/
+
+const { monitorEventLoopDelay } = require('perf_hooks');
+const h = monitorEventLoopDelay({ resolution: 20 });
 
 const logger = winston.createLogger(logConfiguration);
 app.get('/', function (req, res) {
  // res.send('Hello abhilash branch World!');
 //sleep.sleep(5)
+h.enable();
 logger.info('Hello, Winston!');
 res.send("Hello world Linux Abhilash feature test");
+h.disable();
+logger.info(h.max);
 });
 
 port = process.env.PORT || 1337;
