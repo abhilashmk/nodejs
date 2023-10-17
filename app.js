@@ -15,10 +15,12 @@ h.enable();
 
 const logger = winston.createLogger(logConfiguration);
 app.get('/', function (req, res) {
+     logger.info("Rerquest Start")
     const start = Date.now();
     while (Date.now() - start < 4000) {
         Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 4000);
     }
+    logger.info("Rerquest Start")
     res.send('Hello World!');
 });
 
