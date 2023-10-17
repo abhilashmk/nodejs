@@ -7,6 +7,16 @@ const logConfiguration = {
         new winston.transports.Console()
     ]
 };
+
+const { performance, PerformanceObserver, perf_hooks } = require('perf_hooks');
+
+const obs = new PerformanceObserver((items) => {
+    const entry = items.getEntries()[0];
+    logger.info(`Event Loop Delay: ${entry.duration}ms`);
+});
+
+obs.observe({ entryTypes: ['eventLoopDelay'], buffered: true });
+
 const logger = winston.createLogger(logConfiguration);
 app.get('/', function (req, res) {
  // res.send('Hello abhilash branch World!');
