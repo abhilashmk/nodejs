@@ -27,6 +27,6 @@ var server = app.listen(port,function(){
 	
 });
 setInterval(() => {
-    console.log(`The mean event loop delay over the last 5 seconds was ${h.mean}ms`);
+    logger.info(`The max event loop delay over the last 5 seconds was ${h.max}ms`);
     h.reset();
 }, 5000);
