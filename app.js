@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 const winston = require('winston');
-//var sleep = require('sleep');
+var sleep = require('sleep');
 const logConfiguration = {
     'transports': [
         new winston.transports.Console()
@@ -25,8 +25,8 @@ const h = monitorEventLoopDelay({ resolution: 20 });
 const logger = winston.createLogger(logConfiguration);
 app.get('/', function (req, res) {
  // res.send('Hello abhilash branch World!');
-//sleep.sleep(5)
 h.enable();
+sleep.sleep(5)
 logger.info('Hello, Winston!');
 res.send("Hello world Linux Abhilash feature test");
 h.disable();
