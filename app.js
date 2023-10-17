@@ -8,10 +8,10 @@ const logConfiguration = {
     ]
 };
 
-const { performance } = require('perf_hooks');
-const monitor = performance.monitorEventLoopDelay();
+const { monitorEventLoopDelay } = require('perf_hooks');
+const h = monitorEventLoopDelay({ resolution: 10 });
 
-monitor.enable();
+h.enable();
 
 const logger = winston.createLogger(logConfiguration);
 app.get('/', function (req, res) {
@@ -27,6 +27,6 @@ var server = app.listen(port,function(){
 	
 });
 setInterval(() => {
-    console.log(`The mean event loop delay over the last 5 seconds was ${monitor.mean}ms`);
-    monitor.reset();
+    console.log(`The mean event loop delay over the last 5 seconds was ${h.mean}ms`);
+    h.reset();
 }, 5000);
